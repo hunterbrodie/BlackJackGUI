@@ -4,9 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlackJack"
+        Loaded="Window_Loaded"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="800" Width="600">
+
+    <Border Padding="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Image x:Name="D1Image" Margin="20" Grid.Column="0" Grid.Row="0" Stretch="Uniform" />
+            <Image x:Name="D2Image" Margin="20" Grid.Column="1" Grid.Row="0" Stretch="Uniform" />
+            <Image x:Name="P1Image" Margin="20" Grid.Column="0" Grid.Row="1" Stretch="Uniform" />
+            <Image x:Name="P2Image" Margin="20" Grid.Column="1" Grid.Row="1" Stretch="Uniform" />
+        </Grid>
+    </Border>
 </Window>

@@ -63,6 +63,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Card.cs" />
+    <Compile Include="Deck.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,6 +96,63 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPNG\10C.png" />
+    <Resource Include="CardPNG\10D.png" />
+    <Resource Include="CardPNG\10H.png" />
+    <Resource Include="CardPNG\10S.png" />
+    <Resource Include="CardPNG\2C.png" />
+    <Resource Include="CardPNG\2D.png" />
+    <Resource Include="CardPNG\2H.png" />
+    <Resource Include="CardPNG\2S.png" />
+    <Resource Include="CardPNG\3C.png" />
+    <Resource Include="CardPNG\3D.png" />
+    <Resource Include="CardPNG\3H.png" />
+    <Resource Include="CardPNG\3S.png" />
+    <Resource Include="CardPNG\4C.png" />
+    <Resource Include="CardPNG\4D.png" />
+    <Resource Include="CardPNG\4H.png" />
+    <Resource Include="CardPNG\4S.png" />
+    <Resource Include="CardPNG\5C.png" />
+    <Resource Include="CardPNG\5D.png" />
+    <Resource Include="CardPNG\5H.png" />
+    <Resource Include="CardPNG\5S.png" />
+    <Resource Include="CardPNG\6C.png" />
+    <Resource Include="CardPNG\6D.png" />
+    <Resource Include="CardPNG\6H.png" />
+    <Resource Include="CardPNG\6S.png" />
+    <Resource Include="CardPNG\7C.png" />
+    <Resource Include="CardPNG\7D.png" />
+    <Resource Include="CardPNG\7H.png" />
+    <Resource Include="CardPNG\7S.png" />
+    <Resource Include="CardPNG\8C.png" />
+    <Resource Include="CardPNG\8D.png" />
+    <Resource Include="CardPNG\8H.png" />
+    <Resource Include="CardPNG\8S.png" />
+    <Resource Include="CardPNG\9C.png" />
+    <Resource Include="CardPNG\9D.png" />
+    <Resource Include="CardPNG\9H.png" />
+    <Resource Include="CardPNG\9S.png" />
+    <Resource Include="CardPNG\AC.png" />
+    <Resource Include="CardPNG\AD.png" />
+    <Resource Include="CardPNG\AH.png" />
+    <Resource Include="CardPNG\AS.png" />
+    <Resource Include="CardPNG\JC.png" />
+    <Resource Include="CardPNG\JD.png" />
+    <Resource Include="CardPNG\JH.png" />
+    <Resource Include="CardPNG\JS.png" />
+    <Resource Include="CardPNG\KC.png" />
+    <Resource Include="CardPNG\KD.png" />
+    <Resource Include="CardPNG\KH.png" />
+    <Resource Include="CardPNG\KS.png" />
+    <Resource Include="CardPNG\QC.png" />
+    <Resource Include="CardPNG\QD.png" />
+    <Resource Include="CardPNG\QH.png" />
+    <Resource Include="CardPNG\QS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CardPNG\back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

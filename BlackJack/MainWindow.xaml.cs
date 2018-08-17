@@ -69,6 +69,16 @@ namespace BlackJack
 
         }
         #endregion
+
+        private void Stay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Hit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

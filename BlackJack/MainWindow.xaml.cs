@@ -13,14 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
 namespace BlackJack
 {
+    
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Deck deck = new Deck();
+        public List<Card> pcards = new List<Card>();
+        public List<Card> dcards = new List<Card>();
+
         #region Main Constructor
         public MainWindow()
         {
@@ -35,19 +42,18 @@ namespace BlackJack
             BitmapImage image2 = new BitmapImage();
             BitmapImage image3 = new BitmapImage();
             BitmapImage image4 = new BitmapImage();
-            Card pcard1 = new Card();
-            Card pcard2 = new Card();
-            Card dcard1 = new Card();
-            Card dcard2 = new Card();
-            Deck deck = new Deck();
             deck.reset();
             deck.shuffle();
 
-            pcard1 = deck.deal();
-            pcard2 = deck.deal();
-            dcard1 = deck.deal();
-            dcard2 = deck.deal();
-            string pngsource = "/CardPNG/" + dcard2.getPNG() +".png";
+            Card placeholder = new BlackJack.Card();
+            for (int x = 0; x < 2; x++)
+            {
+                placeholder = deck.deal();
+                pcards.Add(placeholder);
+                placeholder = deck.deal();
+                dcards.Add(placeholder);
+            }
+            string pngsource = "/CardPNG/" + dcards[1].getPNG() +".png";
             image1.BeginInit();
             image1.UriSource = new Uri("/CardPNG/back.png", UriKind.Relative);
             image1.EndInit();
@@ -56,12 +62,12 @@ namespace BlackJack
             image2.UriSource = new Uri(pngsource, UriKind.Relative);
             image2.EndInit();
             this.D2Image.Source = image2;
-            pngsource = "/CardPNG/" + pcard1.getPNG() + ".png";
+            pngsource = "/CardPNG/" + pcards[0].getPNG() + ".png";
             image3.BeginInit();
             image3.UriSource = new Uri(pngsource, UriKind.Relative);
             image3.EndInit();
             this.P1Image.Source = image3;
-            pngsource = "/CardPNG/" + pcard2.getPNG() + ".png";
+            pngsource = "/CardPNG/" + pcards[1].getPNG() + ".png";
             image4.BeginInit();
             image4.UriSource = new Uri(pngsource, UriKind.Relative);
             image4.EndInit();

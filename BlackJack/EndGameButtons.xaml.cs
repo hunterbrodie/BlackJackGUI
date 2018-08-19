@@ -29,6 +29,7 @@ namespace BlackJack
         {
             Game game = new Game();
             (((this.Parent as Grid).Parent as Grid).Parent as Grid).Children.Add(game);
+            (((this.Parent as Grid).Parent as Grid).Parent as Grid).Children.Remove(((this.Parent as Grid).Parent as Grid));
         }
 
         private void ExitGame_Click(object sender, RoutedEventArgs e)

@@ -82,8 +82,7 @@ namespace BlackJack
                 dImage[x].Source = image2;
                 pngsource2 = "/CardPNG/" + dcards[1].getPNG() + ".png";
             }
-
-            EndGame endGame = new EndGame();
+            
             if (pcards[0].value + pcards[1].value == 21)
             {
                 //player blackjack
@@ -150,7 +149,6 @@ namespace BlackJack
 
         private void Stay_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage image1 = new BitmapImage();
             string pngsource1 = "";
             bool busted = false;
             while (dtotalval() < 17)
@@ -158,9 +156,7 @@ namespace BlackJack
                 dcards.Add(deck.deal());
                 dcardnum++;
                 pngsource1 = "/CardPNG/" + dcards[dcardnum - 1].getPNG() + ".png";
-                image1.BeginInit();
-                image1.UriSource = new Uri(pngsource1, UriKind.Relative);
-                image1.EndInit();
+                BitmapImage image1 = new BitmapImage(new Uri(pngsource1, UriKind.Relative));
                 dImage[dcardnum - 1].Source = image1;
             }
             busted = dbustcheck(busted);

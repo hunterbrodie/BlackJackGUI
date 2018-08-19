@@ -83,7 +83,20 @@ namespace BlackJack
                 pngsource2 = "/CardPNG/" + dcards[1].getPNG() + ".png";
             }
             
-            if (pcards[0].value + pcards[1].value == 21)
+            if (ptotalval() == 21 && dtotalval() == 21)
+            {
+                Title.Text = "You Tie";
+                EndGameButtons endGameButtons = new EndGameButtons();
+                ButtonGrid.ColumnDefinitions.Clear();
+                ButtonGrid.Children.Add(endGameButtons);
+                BitmapImage image = new BitmapImage();
+                string pngsource = "/CardPNG/" + dcards[0].getPNG() + ".png";
+                image.BeginInit();
+                image.UriSource = new Uri(pngsource, UriKind.Relative);
+                image.EndInit();
+                dImage[0].Source = image;
+            }
+            else if (ptotalval() == 21)
             {
                 //player blackjack
                 Title.Text = "You Got BlackJack";
@@ -97,7 +110,7 @@ namespace BlackJack
                 image.EndInit();
                 dImage[0].Source = image;
             }
-            if (dcards[0].value + dcards[1].value == 21)
+            else if (dtotalval() == 21)
             {
                 //dealer blackjack
                 Title.Text = "Dealer Got BlackJack";

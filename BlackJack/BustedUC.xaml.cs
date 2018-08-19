@@ -10,23 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BlackJack
 {
     /// <summary>
-    /// Interaction logic for BustedWindow.xaml
+    /// Interaction logic for BustedUC.xaml
     /// </summary>
-    public partial class BustedWindow : Window
+    public partial class BustedUC : UserControl
     {
-        public BustedWindow()
+        public BustedUC()
         {
             InitializeComponent();
         }
 
         private void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
-
+            Game game = new Game();
+            (this.Parent as Grid).Children.Add(game);
+            (this.Parent as Grid).Children.Remove(this);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

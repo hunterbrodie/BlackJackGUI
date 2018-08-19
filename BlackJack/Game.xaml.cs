@@ -80,6 +80,15 @@ namespace BlackJack
                 dImage[x].Source = image2;
                 pngsource2 = "/CardPNG/" + dcards[1].getPNG() + ".png";
             }
+
+            if (pcards[0].value + pcards[1].value == 21)
+            {
+                //player blackjack
+            }
+            if (dcards[0].value + dcards[1].value == 21)
+            {
+                //dealer blackjack
+            }
         }
         #endregion
 
@@ -99,22 +108,75 @@ namespace BlackJack
                 image.UriSource = new Uri(pngsource, UriKind.Relative);
                 image.EndInit();
                 pImage[cardnum - 1].Source = image;
-                busted = bustcheck(busted);
+                busted = pbustcheck(busted);
             }
             if (busted == true)
             {
                 BustedUC bustedUC = new BustedUC();
                 (this.Parent as Grid).Children.Add(bustedUC);
+                ((TextBlock)bustedUC.FindName("text")).Text = "You Went Bust";
                 (this.Parent as Grid).Children.Remove(this);
             }
         }
 
         private void Stay_Click(object sender, RoutedEventArgs e)
         {
-
+            EndGame endGame = new EndGame();
+            bool busted = false;
+            while (dtotalval() < 17)
+            {
+                dcards.Add(deck.deal());
+            }
+            busted = dbustcheck(busted);
+            if (busted == true)
+            {
+                BustedUC bustedUC = new BustedUC();
+                (this.Parent as Grid).Children.Add(bustedUC);
+                ((TextBlock)bustedUC.FindName("text")).Text = "Dealer Went Bust";
+                (this.Parent as Grid).Children.Remove(this);
+            }
+            else
+            {
+                if (ptotalval() > dtotalval())
+                {
+                    ((TextBlock)endGame.FindName("text")).Text = "You Won";
+                }
+                else
+                {
+                    ((TextBlock)endGame.FindName("text")).Text = "Dealer Won";
+                }
+                (this.Parent as Grid).Children.Add(endGame);
+                ((TextBlock)endGame.FindName("youhad")).Text = "You Had: " + ptotalval().ToString();
+                ((TextBlock)endGame.FindName("dealerhad")).Text = "Dealer Had: " + dtotalval().ToString();
+                (this.Parent as Grid).Children.Remove(this);
+            }
         }
 
-        public bool bustcheck(bool busted)
+        public bool pbustcheck(bool busted)
+        {
+            int total = ptotalval();
+
+            if (total > 21)
+            {
+                busted = true;
+            }
+
+            return busted;
+        }
+
+        public bool dbustcheck(bool busted)
+        {
+            int total = dtotalval();
+
+            if (total > 21)
+            {
+                busted = true;
+            }
+
+            return busted;
+        }
+
+        public int ptotalval()
         {
             int total = 0;
             bool acesnum = false;
@@ -139,12 +201,36 @@ namespace BlackJack
                 total += 10;
             }
 
-            if (total > 21)
+            return total;
+        }
+
+        public int dtotalval()
+        {
+            int total = 0;
+            bool acesnum = false;
+            for (int x = 0; x < dcards.Count(); x++)
             {
-                busted = true;
+                if (dcards[x].value == 1)
+                {
+                    acesnum = true;
+                }
+                if (dcards[x].value > 10)
+                {
+                    total += 10;
+                }
+                else
+                {
+                    total += dcards[x].value;
+                }
             }
 
-            return busted;
+            if (acesnum && (total - 1) < 11)
+            {
+                total += 10;
+            }
+
+            return total;
         }
+
     }
 }

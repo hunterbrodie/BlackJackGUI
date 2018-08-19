@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BlackJack
 {
     /// <summary>
-    /// Interaction logic for EndGame.xaml
+    /// Interaction logic for EndGameButtons.xaml
     /// </summary>
-    public partial class EndGame : UserControl
+    public partial class EndGameButtons : UserControl
     {
-        public EndGame()
+        public EndGameButtons()
         {
             InitializeComponent();
         }
@@ -28,11 +28,10 @@ namespace BlackJack
         private void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
             Game game = new Game();
-            (this.Parent as Grid).Children.Add(game);
-            (this.Parent as Grid).Children.Remove(this);
+            (((this.Parent as Grid).Parent as Grid).Parent as Grid).Children.Add(game);
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void ExitGame_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
         }

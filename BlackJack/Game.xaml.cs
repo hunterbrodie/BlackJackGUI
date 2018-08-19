@@ -25,6 +25,7 @@ namespace BlackJack
         public List<Card> pcards = new List<Card>();
         public List<Card> dcards = new List<Card>();
         public int cardnum;
+        public int dcardnum;
         public List<Image> pImage = new List<Image>();
         public List<Image> dImage = new List<Image>();
         #region Main constructer
@@ -52,6 +53,7 @@ namespace BlackJack
             dImage.Add(this.D5Image);
             #endregion
             cardnum = 2;
+            dcardnum = 2;
             deck.reset();
             deck.shuffle();
 
@@ -81,13 +83,34 @@ namespace BlackJack
                 pngsource2 = "/CardPNG/" + dcards[1].getPNG() + ".png";
             }
 
+            EndGame endGame = new EndGame();
             if (pcards[0].value + pcards[1].value == 21)
             {
                 //player blackjack
+                Title.Text = "You Got BlackJack";
+                EndGameButtons endGameButtons = new EndGameButtons();
+                ButtonGrid.ColumnDefinitions.Clear();
+                ButtonGrid.Children.Add(endGameButtons);
+                BitmapImage image = new BitmapImage();
+                string pngsource = "/CardPNG/" + dcards[0].getPNG() + ".png";
+                image.BeginInit();
+                image.UriSource = new Uri(pngsource, UriKind.Relative);
+                image.EndInit();
+                dImage[0].Source = image;
             }
             if (dcards[0].value + dcards[1].value == 21)
             {
                 //dealer blackjack
+                Title.Text = "Dealer Got BlackJack";
+                EndGameButtons endGameButtons = new EndGameButtons();
+                ButtonGrid.ColumnDefinitions.Clear();
+                ButtonGrid.Children.Add(endGameButtons);
+                BitmapImage image = new BitmapImage();
+                string pngsource = "/CardPNG/" + dcards[0].getPNG() + ".png";
+                image.BeginInit();
+                image.UriSource = new Uri(pngsource, UriKind.Relative);
+                image.EndInit();
+                dImage[0].Source = image;
             }
         }
         #endregion
@@ -97,8 +120,8 @@ namespace BlackJack
             bool busted = false;
             if (cardnum < 6)
             {
-                cardnum++;
                 BitmapImage image = new BitmapImage();
+                cardnum++;
                 Card card = new Card();
                 card = deck.deal();
                 pcards.Add(card);
@@ -112,44 +135,63 @@ namespace BlackJack
             }
             if (busted == true)
             {
-                BustedUC bustedUC = new BustedUC();
-                (this.Parent as Grid).Children.Add(bustedUC);
-                ((TextBlock)bustedUC.FindName("text")).Text = "You Went Bust";
-                (this.Parent as Grid).Children.Remove(this);
+                BitmapImage image = new BitmapImage();
+                Title.Text = "You Went Bust";
+                EndGameButtons endGameButtons = new EndGameButtons();
+                ButtonGrid.ColumnDefinitions.Clear();
+                ButtonGrid.Children.Add(endGameButtons);
+                string pngsource = "/CardPNG/" + dcards[0].getPNG() + ".png";
+                image.BeginInit();
+                image.UriSource = new Uri(pngsource, UriKind.Relative);
+                image.EndInit();
+                dImage[0].Source = image;
             }
         }
 
         private void Stay_Click(object sender, RoutedEventArgs e)
         {
-            EndGame endGame = new EndGame();
+            BitmapImage image1 = new BitmapImage();
+            string pngsource1 = "";
             bool busted = false;
             while (dtotalval() < 17)
             {
                 dcards.Add(deck.deal());
+                dcardnum++;
+                pngsource1 = "/CardPNG/" + dcards[dcardnum - 1].getPNG() + ".png";
+                image1.BeginInit();
+                image1.UriSource = new Uri(pngsource1, UriKind.Relative);
+                image1.EndInit();
+                dImage[dcardnum - 1].Source = image1;
             }
             busted = dbustcheck(busted);
             if (busted == true)
             {
-                BustedUC bustedUC = new BustedUC();
-                (this.Parent as Grid).Children.Add(bustedUC);
-                ((TextBlock)bustedUC.FindName("text")).Text = "Dealer Went Bust";
-                (this.Parent as Grid).Children.Remove(this);
+                Title.Text = "Dealer Went Bust";
             }
             else
             {
                 if (ptotalval() > dtotalval())
                 {
-                    ((TextBlock)endGame.FindName("text")).Text = "You Won";
+                    Title.Text = "You Won";
+                }
+                else if (ptotalval() < dtotalval())
+                {
+                    Title.Text = "Dealer Won";
                 }
                 else
                 {
-                    ((TextBlock)endGame.FindName("text")).Text = "Dealer Won";
+                    Title.Text = "You Tied";
                 }
-                (this.Parent as Grid).Children.Add(endGame);
-                ((TextBlock)endGame.FindName("youhad")).Text = "You Had: " + ptotalval().ToString();
-                ((TextBlock)endGame.FindName("dealerhad")).Text = "Dealer Had: " + dtotalval().ToString();
-                (this.Parent as Grid).Children.Remove(this);
             }
+            EndGameButtons endGameButtons = new EndGameButtons();
+            ButtonGrid.ColumnDefinitions.Clear();
+            ButtonGrid.Children.Add(endGameButtons);
+            BitmapImage image = new BitmapImage();
+            string pngsource = "/CardPNG/" + dcards[0].getPNG() + ".png";
+            image.BeginInit();
+            image.UriSource = new Uri(pngsource, UriKind.Relative);
+            image.EndInit();
+            dImage[0].Source = image;
         }
 
         public bool pbustcheck(bool busted)

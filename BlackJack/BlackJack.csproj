@@ -57,11 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="BustedUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EndGame.xaml">
+    <Page Include="EndGameButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,13 +73,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BustedUC.xaml.cs">
-      <DependentUpon>BustedUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="EndGame.xaml.cs">
-      <DependentUpon>EndGame.xaml</DependentUpon>
+    <Compile Include="EndGameButtons.xaml.cs">
+      <DependentUpon>EndGameButtons.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
